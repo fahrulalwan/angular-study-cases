@@ -10,7 +10,7 @@ module.exports = {
         './src/**/*.{html,ts,css,scss,sass,less,styl}',
       ]
     },
-    darkMode: false, // or 'media' or 'class'
+    darkMode: false, // or 'media' or 'model'
     theme: {
       extend: {},
     },
