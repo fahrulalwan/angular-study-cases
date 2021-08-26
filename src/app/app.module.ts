@@ -18,6 +18,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { PublicTodosComponent } from './pages/public-todos/public-todos.component';
 import {HttpClientModule} from "@angular/common/http";
 import {PublicTodosResolver} from "./pages/public-todos/public-todos.resolver";
+import { TopicCardComponent } from './pages/home/topic-card/topic-card.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {PublicTodosResolver} from "./pages/public-todos/public-todos.resolver";
     MyformComponent,
     TodoCardComponent,
     NotFoundComponent,
-    PublicTodosComponent
+    PublicTodosComponent,
+    TopicCardComponent
   ],
   imports: [
     BrowserModule,

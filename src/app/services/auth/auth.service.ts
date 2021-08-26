@@ -10,6 +10,8 @@ export class AuthService {
       : false
   );
 
+  auth$: Observable<boolean> = this.#authSubject.asObservable();
+
   constructor(private router: Router) {
   }
 

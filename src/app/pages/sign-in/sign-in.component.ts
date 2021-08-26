@@ -1,15 +1,54 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../../services/auth/auth.service";
+import {Subscription} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css']
 })
-export class SignInComponent implements OnInit {
+export class SignInComponent implements OnInit, OnDestroy {
+  subs: Subscription[] = [];
 
-  constructor() { }
+  form: FormGroup = this.fb.group({
+    username: this.fb.control(null, Validators.required),
+    password: this.fb.control(null, Validators.required),
+  });
+
+  isWrongPassword = false;
+
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+  }
 
   ngOnInit(): void {
   }
 
+  onSubmit(): void {
+    if (this.form.valid) {
+      this.isWrongPassword = false;
+
+      const sub = this.authService.signIn(this.form.value).subscribe({
+        next: response => {
+          if (response) {
+            void this.router.navigate(['/user']);
+          } else {
+            this.isWrongPassword = true;
+          }
+        }
+      });
+
+      this.subs.push(sub);
+    } else {
+      console.log('this.form is invalid');
+      this.form.markAllAsTouched();
+
+      this.form.get('')
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.subs.forEach(sub => sub.unsubscribe());
+  }
 }

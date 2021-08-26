@@ -20,14 +20,15 @@ export class MyformCandeactivateGuard implements CanDeactivate<CanDeactivateGuar
     const canDeactivate = component.canDeactivate();
 
     if (canDeactivate) {
+      return true;
+    } else {
       // this.location.go(currentState.url);
 
       const currentUrlTree = this.router.createUrlTree(currentRoute.url);
       const currentUrl = currentUrlTree.toString();
       this.location.go(currentUrl);
+
       return false;
-    } else {
-      return true;
     }
   }
 

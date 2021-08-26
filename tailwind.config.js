@@ -12,6 +12,9 @@ module.exports = {
     },
     darkMode: false, // or 'media' or 'model'
     theme: {
+      fontFamily: {
+        'sans': ['"Open Sans"'],
+      },
       extend: {},
     },
     variants: {

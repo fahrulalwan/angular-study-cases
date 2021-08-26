@@ -1,1 +1,9 @@
-<p>home works!</p>
+<h1 class="text-3xl font-semibold">Angular: Study Cases</h1>
+
+<p class="my-8 text-xl">What topics we do cover in this sharing session:</p>
+
+<ul class="space-y-5">
+  <li *ngFor="let topic of topicsList; let i = index">
+    <app-topic-card [topic]="topic"></app-topic-card>
+  </li>
+</ul>
