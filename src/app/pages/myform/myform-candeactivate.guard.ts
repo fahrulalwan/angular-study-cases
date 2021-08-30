@@ -19,17 +19,12 @@ export class MyformCandeactivateGuard implements CanDeactivate<CanDeactivateGuar
     nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const canDeactivate = component.canDeactivate();
 
-    if (canDeactivate) {
-      return true;
-    } else {
-      // this.location.go(currentState.url);
-
-      const currentUrlTree = this.router.createUrlTree(currentRoute.url);
-      const currentUrl = currentUrlTree.toString();
-      this.location.go(currentUrl);
-
-      return false;
+    if (this.router.getCurrentNavigation()?.trigger === 'popstate') {
+      this.location.go(currentState.url);
+      this.location.go(currentState.url);
     }
+
+    return canDeactivate;
   }
 
 }

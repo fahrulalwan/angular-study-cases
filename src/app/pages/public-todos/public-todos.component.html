@@ -1,1 +1,16 @@
-<p>public-todos works!</p>
+<h1 class="text-5xl font-bold">Case Study 4: Resolve</h1>
+
+<p class="my-4">Navigation to this page is stalled before the api is fetched.</p>
+
+<ul class="text-white grid grid-cols-2 gap-4 my-10" *ngIf="resolveData | async as resolve">
+  <li class="p-5 bg-green-800 rounded-md flex flex-col" *ngFor="let todo of resolve">
+    <div class="flex items-center justify-between">
+      <p class="font-semibold text-xl">{{todo.id}}</p>
+      <p class="my-3">userId: {{todo.userId}}</p>
+    </div>
+    <div class="flex items-center justify-between flex-1 mt-3">
+      <p class="font-semibold text-xl mr-5">{{todo.title}}</p>
+      <input class="cursor-pointer w-5 h-5" type="checkbox" [value]="todo.completed">
+    </div>
+  </li>
+</ul>

@@ -1,3 +1,120 @@
-<h1 class="text-5xl font-bold">Case Study 2: canDeactivate</h1>
+<h1 class="text-5xl font-bold px-3">Case Study 2: canDeactivate</h1>
 
-<p class="my-4">We cant navigate to other page if the form is unfinished</p>
+<p class="my-4 px-3">We cant navigate to other page if the form is unfinished</p>
+
+<form class=" px-3" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <div class="mt-5">
+    <label>Name</label>
+    <div class="flex space-x-5 mt-1">
+      <div class="flex-1">
+        <input formControlName="firstName" type="text" class="w-full px-3 py-2 mt-1 rounded-lg text-black border-2 border-gray-300">
+        <p *ngIf="form.get('firstName')?.touched && form.get('firstName')?.invalid; else firstNameIsValid"
+           class="text-red-600 font-medium text-sm ml-1 mt-1">
+          First name harus diisi</p>
+        <ng-template #firstNameIsValid>
+          <p class="text-gray-500 text-sm ml-1 mt-1">First name</p>
+        </ng-template>
+      </div>
+      <div class="flex-1">
+        <input formControlName="lastName" type="text" class="w-full px-3 py-2 mt-1 rounded-lg text-black border-2 border-gray-300">
+        <p *ngIf="form.get('lastName')?.touched && form.get('lastName')?.invalid; else lastNameIsValid"
+           class="text-red-600 font-medium text-sm ml-1 mt-1">Last name harus diisi</p>
+        <ng-template #lastNameIsValid>
+          <p class="text-gray-500 text-sm ml-1 mt-1">Last name</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <label>Gender</label>
+    <div class="mt-1 space-y-1 ml-1">
+      <div>
+        <label class="inline-flex items-center space-x-3 cursor-pointer">
+          <input formControlName="gender" type="radio" class="w-5 h-5 rounded-lg text-black" value="male">
+          <span>Male</span>
+        </label>
+      </div>
+      <div>
+        <label class="inline-flex items-center space-x-3 cursor-pointer">
+          <input formControlName="gender" type="radio" class="w-5 h-5 rounded-lg text-black" value="female">
+          <span>Female</span>
+        </label>
+      </div>
+      <p *ngIf="form.get('gender')?.touched && form.get('gender')?.invalid" class="text-red-600 font-medium text-sm">
+        Gender kamu harus
+        diisi</p>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <label>Date of Birth</label>
+    <div class="mt-1">
+      <input formControlName="dateOfBirth" type="date"
+             class="w-full max-w-xs px-3 py-2 mt-1 rounded-lg text-black border-2 border-gray-300">
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <label>Email</label>
+    <div class="mt-1">
+      <input formControlName="email" type="email" class="w-full max-w-xs px-3 py-2 mt-1 rounded-lg text-black border-2 border-gray-300">
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <label>Address</label>
+    <div class="mt-1">
+      <input formControlName="streetAddress" type="text" class="w-full px-3 py-2 mt-1 rounded-lg text-black border-2 border-gray-300">
+      <p *ngIf="form.get('streetAddress')?.touched && form.get('streetAddress')?.invalid; else streetAddressIsValid"
+         class="text-red-600 font-medium text-sm ml-1 mt-1">
+        Street Address harus diisi
+      </p>
+      <ng-template #streetAddressIsValid>
+        <p class="text-gray-500 text-sm ml-1 mt-1">Street Address</p>
+      </ng-template>
+    </div>
+    <div class="mt-1">
+      <input formControlName="streetAddressLine2" type="text"
+             class="w-full px-3 py-2 mt-1 rounded-lg text-black border-2 border-gray-300">
+      <p class="text-gray-500 text-sm ml-1 mt-1">Street Address Line 2</p>
+    </div>
+    <div class="mt-1 flex space-x-5">
+      <div class="flex-1">
+        <input formControlName="city" type="text" class="w-full px-3 py-2 mt-1 rounded-lg text-black border-2 border-gray-300">
+        <p *ngIf="form.get('city')?.touched && form.get('city')?.invalid; else cityIsValid"
+           class="text-red-600 font-medium text-sm ml-1 mt-1">
+          City harus diisi
+        </p>
+        <ng-template #cityIsValid>
+          <p class="text-gray-500 text-sm ml-1 mt-1">City</p>
+        </ng-template>
+      </div>
+      <div class="flex-1">
+        <input formControlName="province" type="text" class="w-full px-3 py-2 mt-1 rounded-lg text-black border-2 border-gray-300">
+        <p *ngIf="form.get('province')?.touched && form.get('province')?.invalid; else provinceIsValid"
+           class="text-red-600 font-medium text-sm ml-1 mt-1">
+          State / Province harus diisi
+        </p>
+        <ng-template #provinceIsValid>
+          <p class="text-gray-500 text-sm ml-1 mt-1">State / Province</p>
+        </ng-template>
+      </div>
+    </div>
+    <div class="mt-1">
+      <input formControlName="zipCode" type="text" class="w-full px-3 py-2 mt-1 rounded-lg text-black border-2 border-gray-300">
+      <p *ngIf="form.get('zipCode')?.touched && form.get('zipCode')?.invalid; else zipCodeIsValid"
+         class="text-red-600 font-medium text-sm ml-1 mt-1">
+        Postal / Zip Code harus diisi
+      </p>
+      <ng-template #zipCodeIsValid>
+        <p class="text-gray-500 text-sm ml-1 mt-1">Postal / Zip Code</p>
+      </ng-template>
+    </div>
+  </div>
+
+  <button type="submit" class="rounded-md font-medium mt-8 py-2 px-4 border-2 bg-indigo-800 border-indigo-800 text-white">
+    Submit
+  </button>
+</form>

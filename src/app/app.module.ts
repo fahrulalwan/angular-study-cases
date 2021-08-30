@@ -19,6 +19,8 @@ import { PublicTodosComponent } from './pages/public-todos/public-todos.componen
 import {HttpClientModule} from "@angular/common/http";
 import {PublicTodosResolver} from "./pages/public-todos/public-todos.resolver";
 import { TopicCardComponent } from './pages/home/topic-card/topic-card.component';
+import { PopupComponent } from './shared/popup/popup.component';
+import {PopupService} from "./shared/popup/popup.service";
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { TopicCardComponent } from './pages/home/topic-card/topic-card.component
     TodoCardComponent,
     NotFoundComponent,
     PublicTodosComponent,
-    TopicCardComponent
+    TopicCardComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,8 @@ import { TopicCardComponent } from './pages/home/topic-card/topic-card.component
     TodoService,
     PublicTodosResolver,
     MyformCandeactivateGuard,
-    UserCanactivateGuard
+    UserCanactivateGuard,
+    PopupService
   ],
   bootstrap: [AppComponent]
 })

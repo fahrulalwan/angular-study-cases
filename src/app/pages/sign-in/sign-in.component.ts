@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth/auth.service";
 import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
+import {PopupService} from "../../shared/popup/popup.service";
 
 @Component({
   selector: 'app-sign-in',
@@ -19,7 +20,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   isWrongPassword = false;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private popupService: PopupService) {
   }
 
   ngOnInit(): void {
@@ -32,6 +33,7 @@ export class SignInComponent implements OnInit, OnDestroy {
       const sub = this.authService.signIn(this.form.value).subscribe({
         next: response => {
           if (response) {
+            this.popupService.toggle();
             void this.router.navigate(['/user']);
           } else {
             this.isWrongPassword = true;
