@@ -43,10 +43,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 
       this.subs.push(sub);
     } else {
-      console.log('this.form is invalid');
       this.form.markAllAsTouched();
-
-      this.form.get('')
     }
   }
 
